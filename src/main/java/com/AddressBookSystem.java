@@ -13,6 +13,7 @@ public class AddressBookSystem {
             System.out.println("Enter 1 to Print contacts");
             System.out.println("Enter 2 to add New contacts");
             System.out.println("Enter 3 to edit existing contact");
+            System.out.println("Enter 4 to edit delete existing contact");
             int action = scanner.nextInt();
             switch (action) {
                 case 0:
@@ -28,9 +29,28 @@ public class AddressBookSystem {
                 case 3:
                     updateContact();
                     break;
+                case 4:
+                    deleteContact();
+                    break;
                 default:
                     System.out.println("Invalid entry");
             }
+        }
+    }
+
+    private static void deleteContact() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter existing contact firstName:");
+        String searchName = scanner.nextLine();
+        ContactBook existingContactRecord = addressBook.queryContact(searchName);
+        if (existingContactRecord == null) {
+            System.out.println("Contact Not Found");
+            return;
+        }
+        if (addressBook.removeContact(existingContactRecord)) {
+            System.out.println(searchName + " is deleted successfully");
+        } else {
+            System.out.println("Error in deleting the contact");
         }
     }
 

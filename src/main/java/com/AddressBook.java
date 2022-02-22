@@ -71,4 +71,16 @@ public class AddressBook {
         }
         return null;
     }
+
+    public boolean removeContact(ContactBook contact) {
+        int foundPosition = findContact(contact);
+        if (foundPosition < 0) {
+            System.out.println(contact.getFirstName() + " was not found in the list");
+            return false;
+        }
+        this.myContacts.remove(foundPosition);
+        System.out.println(contact.getFirstName() + ", was removed from the list");
+        return true;
+    }
+
 }
