@@ -8,8 +8,9 @@ public class ContactBook {
     private String state;
     private int zip;
     private long phoneNumber;
+    private String email;
 
-    public ContactBook(String firstName, String lastName, String address, String city, String state, int zip, long phoneNumber) {
+    public ContactBook(String firstName, String lastName, String address, String city, String state, int zip, long phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -17,6 +18,7 @@ public class ContactBook {
         this.state = state;
         this.zip = zip;
         this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -75,8 +77,16 @@ public class ContactBook {
         this.phoneNumber = phoneNumber;
     }
 
-    public static ContactBook createContact(String firstName, String lastName, String address, String city, String state, int zip, long phoneNumber) {
-        return new ContactBook(firstName, lastName, address, city, state, zip, phoneNumber);
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public static ContactBook createContact(String firstName, String lastName, String address, String city, String state, int zip, long phoneNumber, String email) {
+        return new ContactBook(firstName, lastName, address, city, state, zip, phoneNumber, email);
     }
 }
 

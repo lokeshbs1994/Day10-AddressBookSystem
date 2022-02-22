@@ -7,6 +7,7 @@ public class AddressBookSystem {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        System.out.println("Welcome to Address Book program");
         boolean quit = false;
         while (!quit) {
             System.out.println("Enter 0 to quit the AddressBook system ");
@@ -45,7 +46,9 @@ public class AddressBookSystem {
         int zip = scanner.nextInt();
         System.out.println("Enter phoneNumber:");
         long phoneNumber = scanner.nextLong();
-        ContactBook newContact = ContactBook.createContact(firstName, lastName, address, city, state, zip, phoneNumber);
+        System.out.println("Enter email:");
+        String email = scanner.next();
+        ContactBook newContact = ContactBook.createContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
         if (addressBook.addNewContact(newContact)) {
             System.out.println("New contact added Successfully..");
         } else {
