@@ -12,6 +12,7 @@ public class AddressBookSystem {
             System.out.println("Enter 0 to quit the AddressBook system ");
             System.out.println("Enter 1 to Print contacts");
             System.out.println("Enter 2 to add New contacts");
+            System.out.println("Enter 3 to edit existing contact");
             int action = scanner.nextInt();
             switch (action) {
                 case 0:
@@ -24,9 +25,44 @@ public class AddressBookSystem {
                 case 2:
                     addNewContact();
                     break;
+                case 3:
+                    updateContact();
+                    break;
                 default:
                     System.out.println("Invalid entry");
             }
+        }
+    }
+
+    private static void updateContact() {
+        System.out.println("Enter existing contact firstName:");
+        String name = scanner.next();
+        ContactBook existingContactRecord = addressBook.queryContact(name);
+        if (existingContactRecord == null) {
+            System.out.println("Contact Not Found");
+            return;
+        }
+        System.out.println("Enter new first Name:");
+        String newFirstName = scanner.next();
+        System.out.println("Enter new last Name:");
+        String newLastName = scanner.next();
+        System.out.println("Enter  new address:");
+        String newAddress = scanner.next();
+        System.out.println("Enter new city:");
+        String newCity = scanner.next();
+        System.out.println("Enter new state:");
+        String newState = scanner.next();
+        System.out.println("Enter  new zip:");
+        int newZip = scanner.nextInt();
+        System.out.println("Enter  new phone Number:");
+        long newPhoneNumber = scanner.nextLong();
+        System.out.println("Enter new email:");
+        String newEmail = scanner.next();
+        ContactBook newContact = ContactBook.createContact(newFirstName, newLastName, newAddress, newCity, newState, newZip, newPhoneNumber,newEmail);
+        if (addressBook.updateContact(existingContactRecord, newContact)) {
+            System.out.println("successfully updated the Contact");
+        } else {
+            System.out.println("Not updated");
         }
     }
 

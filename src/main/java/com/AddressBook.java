@@ -12,7 +12,7 @@ public class AddressBook {
     }
 
     public boolean addNewContact(ContactBook newContact) {
-        if (findContact(newContact.getFirstName(), newContact.getLastName()) > 0) {
+        if (findContact(newContact.getFirstName()) >= 0) {
             System.out.println("Contact is already on List");
             return false;
         }
@@ -20,11 +20,11 @@ public class AddressBook {
         return true;
     }
 
-    private int findContact(String firstName, String lastName) {
+    private int findContact(String firstName) {
         for (int i = 0; i < this.myContacts.size(); i++) {
             ContactBook contact = this.myContacts.get(i);
-            if (contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName)) {
-                return 1;
+            if (contact.getFirstName().equals(firstName)) {
+                return i;
             }
         }
         return -1;
@@ -43,5 +43,32 @@ public class AddressBook {
                     "\n PhoneNumber:\t" + this.myContacts.get(i).getPhoneNumber() +
                     "\n Email:\t" + this.myContacts.get(i).getEmail());
         }
+    }
+
+    public boolean updateContact(ContactBook oldContact, ContactBook newContact) {
+        int foundPosition = findContact(oldContact);
+        if (foundPosition < 0) {
+            System.out.println(oldContact.getFirstName() + " was not found in the list");
+            return false;
+        }
+        if(findContact(newContact.getFirstName())>=0){
+            System.out.println("cannot add " + newContact.getFirstName() + " already on contactBook list");
+            return false;
+        }
+        this.myContacts.set(foundPosition, newContact);
+        System.out.println(oldContact.getFirstName() + ", was replaced with " + newContact.getFirstName());
+        return true;
+    }
+
+    private int findContact(ContactBook contact) {
+        return this.myContacts.indexOf(contact);
+    }
+
+    public ContactBook queryContact(String searchName) {
+        int position = findContact(searchName);
+        if (position >= 0) {
+            return this.myContacts.get(position);
+        }
+        return null;
     }
 }
