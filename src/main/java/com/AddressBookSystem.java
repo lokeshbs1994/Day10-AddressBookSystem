@@ -1,4 +1,5 @@
 package com;
+
 import java.util.Scanner;
 
 public class AddressBookSystem {
@@ -14,6 +15,7 @@ public class AddressBookSystem {
             System.out.println("Enter 2 to add New contacts");
             System.out.println("Enter 3 to edit existing contact");
             System.out.println("Enter 4 to edit delete existing contact");
+            System.out.println("Enter 5 to Add Multiple Contacts");
             int action = scanner.nextInt();
             switch (action) {
                 case 0:
@@ -32,9 +34,21 @@ public class AddressBookSystem {
                 case 4:
                     deleteContact();
                     break;
+                case 5:
+                    addMultipleContact();
+                    break;
                 default:
                     System.out.println("Invalid entry");
             }
+        }
+    }
+
+    private static void addMultipleContact() {
+        System.out.println("Enter Number of Contacts to Add into Contact Book");
+        int number = scanner.nextInt();
+        for (int i = 0; i < number; i++) {
+            addNewContact();
+            System.out.println(i + 1 + " Contact added Successfully.. ");
         }
     }
 
@@ -78,7 +92,7 @@ public class AddressBookSystem {
         long newPhoneNumber = scanner.nextLong();
         System.out.println("Enter new email:");
         String newEmail = scanner.next();
-        ContactBook newContact = ContactBook.createContact(newFirstName, newLastName, newAddress, newCity, newState, newZip, newPhoneNumber,newEmail);
+        ContactBook newContact = ContactBook.createContact(newFirstName, newLastName, newAddress, newCity, newState, newZip, newPhoneNumber, newEmail);
         if (addressBook.updateContact(existingContactRecord, newContact)) {
             System.out.println("successfully updated the Contact");
         } else {
