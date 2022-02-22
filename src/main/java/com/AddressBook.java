@@ -51,7 +51,7 @@ public class AddressBook {
             System.out.println(oldContact.getFirstName() + " was not found in the list");
             return false;
         }
-        if(findContact(newContact.getFirstName())>=0){
+        if (findContact(newContact.getFirstName()) >= 0) {
             System.out.println("cannot add " + newContact.getFirstName() + " already on contactBook list");
             return false;
         }
